@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import Script from "next/script";
 import Providers from "./providers";
 import Header from "@/components/Header";
@@ -33,8 +34,23 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // Read the theme cookie ThemeProvider writes on every change (see
+  // components/ThemeProvider.js). This lets the very first byte of HTML
+  // already carry the right theme — no waiting on a client-side fetch to
+  // MongoDB (signed-in) or a script reading localStorage (guest) before it
+  // looks correct. Only the very first visit on a brand-new browser/device
+  // (no cookie yet) still briefly shows the default until the client syncs
+  // it — everything after that is instant.
+  const cookieTheme = cookies().get("forex-roadmap-theme")?.value;
+  const initialTheme =
+    cookieTheme === "light" || cookieTheme === "dark" ? cookieTheme : undefined;
+
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      data-theme={initialTheme}
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
+    >
       <body>
         <Script id="theme-init" strategy="beforeInteractive">
           {`

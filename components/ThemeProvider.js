@@ -20,6 +20,19 @@ function applyToDom(value) {
   } else {
     document.documentElement.removeAttribute("data-theme");
   }
+  // Mirror the resolved theme into a cookie (separate from the localStorage/
+  // MongoDB "source of truth") purely so the server can read it synchronously
+  // on the next request and render the correct theme immediately — see
+  // app/layout.js. This is what actually kills the load-time flash/delay.
+  try {
+    if (value === "light" || value === "dark") {
+      document.cookie = `forex-roadmap-theme=${value}; path=/; max-age=31536000; SameSite=Lax`;
+    } else {
+      document.cookie = "forex-roadmap-theme=; path=/; max-age=0; SameSite=Lax";
+    }
+  } catch (e) {
+    // ignore (cookies disabled, etc.)
+  }
 }
 
 export function ThemeProvider({ children }) {

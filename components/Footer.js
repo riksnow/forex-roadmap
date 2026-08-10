@@ -8,7 +8,7 @@ export default function Footer() {
         spreads, leverage, and regulatory status directly with any broker
         before funding an account.
       </p>
-      <DonateButton />
+      {/* <DonateButton /> */}
       <p className="footer-fine">
         Progress syncs to your account when you&apos;re signed in with
         Google, or stays in this browser as a guest.
