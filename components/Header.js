@@ -16,6 +16,7 @@ export default async function Header() {
         <nav className="site-nav">
           <Link href="/">Roadmap</Link>
           <Link href="/tools">Pro Tools</Link>
+          <Link href="/sudoku">Sudoku</Link>
           <Link href="/settings">Settings</Link>
         </nav>
         <AuthButtons session={session} />

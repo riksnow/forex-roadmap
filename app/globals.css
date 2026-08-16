@@ -1071,3 +1071,179 @@ details[open] .chevron {
   border-radius: 50%;
 }
 
+/* ---------- Sudoku practice ---------- */
+.sudoku-tabs {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 420px;
+  margin: 0 auto 18px;
+}
+.sudoku-tab {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  padding: 10px 12px;
+  background: var(--panel);
+  color: var(--text-dim);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+.sudoku-tab + .sudoku-tab {
+  border-left: 1px solid var(--border);
+}
+.sudoku-tab.active {
+  background: var(--beg-bg);
+  color: var(--beg);
+  font-weight: 600;
+}
+
+.sudoku-hint {
+  font-size: 13px;
+  color: var(--text-dim);
+  max-width: 420px;
+  margin: 0 auto 14px;
+  text-align: center;
+}
+
+.sudoku-status {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  min-height: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--text-faint);
+}
+.sudoku-status.err {
+  color: var(--pro);
+}
+.sudoku-status.win {
+  color: var(--beg);
+  font-weight: 600;
+}
+
+.sudoku-board-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+.sudoku-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  color: var(--adv);
+  font-size: clamp(14px, 3.6vw, 19px);
+}
+.sudoku-cell.given {
+  color: var(--text);
+  font-weight: 600;
+}
+.sudoku-cell.selected {
+  background: var(--beg-bg);
+}
+.sudoku-cell.peer {
+  background: var(--panel-alt);
+}
+.sudoku-cell.samenum {
+  color: var(--beg);
+}
+.sudoku-cell.conflict,
+.sudoku-cell.wrong {
+  background: var(--pro-bg);
+  color: var(--pro);
+}
+.sudoku-cell.thick-right {
+  border-right: 2px solid var(--border);
+}
+.sudoku-cell.thick-bottom {
+  border-bottom: 2px solid var(--border);
+}
+
+.sudoku-notes {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--text-faint);
+}
+.sudoku-notes span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sudoku-ink-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.sudoku-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 420px;
+  margin: 14px auto 0;
+  justify-content: center;
+}
+.sudoku-toolbar .chip {
+  flex: 1 1 28%;
+  text-align: center;
+}
+
+.sudoku-numpad {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 5px;
+  max-width: 420px;
+  margin: 14px auto 0;
+}
+.sudoku-numpad button {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  cursor: pointer;
+}
+.sudoku-numpad button:hover {
+  border-color: var(--text-faint);
+}
+.sudoku-numpad button:active {
+  transform: scale(0.95);
+}
+
+.sudoku-model-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  text-align: center;
+  max-width: 420px;
+  margin: 10px auto 0;
+}
